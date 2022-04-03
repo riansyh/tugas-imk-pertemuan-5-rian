@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private int speed = 10;
-    [SerializeField] private float jumpForce = 0.1f;
+    [SerializeField] private float jumpForce = 100f;
     [SerializeField] private bool usePhysics = true;
 	[SerializeField] private bool isRunning = false;
 	[SerializeField] private bool isJumping = false;
@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour
 		}
 
 		if (isRunning){
-			speed = 30;
+			speed = 15;
 			ShakingCamera.Instance.ShakeCamera(3f);
 			_animator.SetBool(IsRunning, true);
 		} else {
@@ -124,7 +124,7 @@ public class Movement : MonoBehaviour
 		}
 
 		if (isRunning){
-			speed = 30;
+			speed = 15;
 			ShakingCamera.Instance.ShakeCamera(3f);
 			_animator.SetBool(IsRunning, true);	
 		} else {
