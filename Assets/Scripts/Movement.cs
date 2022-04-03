@@ -212,6 +212,16 @@ public class Movement : MonoBehaviour
 		} 
     }
 
+    public void JumpTouch()
+    {
+		if(IsGrounded()){
+			isJumping = true;
+			_rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+			_animator.SetBool(IsRunning, false);			
+        	_animator.SetBool(IsWalking, false);
+		} 
+    }
+
     private bool IsGrounded()
     {
         return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
