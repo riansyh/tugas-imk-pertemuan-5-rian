@@ -216,8 +216,6 @@ public class Movement : MonoBehaviour
     {
 		if(IsGrounded()){
 			_rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-			_animator.SetBool(IsRunning, false);			
-        	_animator.SetBool(IsWalking, false);
 		} 
     }
 
