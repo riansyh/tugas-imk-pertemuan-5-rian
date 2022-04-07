@@ -95,6 +95,7 @@ public class Movement : MonoBehaviour
 
             Vector2 input = _controls.Player.Move.ReadValue<Vector2>();
             Vector3 target = HandleInput(input);
+            RotateCharacter(target);
             Move(target);
         }
         else
@@ -151,6 +152,7 @@ public class Movement : MonoBehaviour
             }
             Vector2 input = _controls.Player.Move.ReadValue<Vector2>();
             Vector3 target = HandleInput(input);
+            RotateCharacter(target);
             MovePhysics(target);
         }
         else
@@ -180,6 +182,11 @@ public class Movement : MonoBehaviour
         Vector3 direction = right * input.x + forward * input.y;
         
         return transform.position + direction * speed * Time.deltaTime;
+    }
+
+    private void RotateCharacter(Vector3 target)
+    {
+        transform.rotation = Quaternion.LookRotation(target-transform.position);
     }
 
     private void Move(Vector3 target)
