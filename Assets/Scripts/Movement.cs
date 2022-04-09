@@ -26,7 +26,6 @@ public class Movement : MonoBehaviour
     
     public CapsuleCollider col;
     public float distToGround;
-	public GameObject toggler;
 
     private void Awake()
     {
@@ -62,7 +61,7 @@ public class Movement : MonoBehaviour
             return;
         }
 
-		if(_controls.Player.Run.IsPressed() || toggler.GetComponent<Toggle>().isOn){
+		if(_controls.Player.Run.IsPressed()){
 			isRunning = true;
         } else {
 			isRunning = false;
@@ -118,7 +117,7 @@ public class Movement : MonoBehaviour
             return;
         }
 
-		if(_controls.Player.Run.IsPressed() || toggler.GetComponent<Toggle>().isOn){
+		if(_controls.Player.Run.IsPressed()){
 			isRunning = true;
         } else {
 			isRunning = false;
@@ -126,8 +125,10 @@ public class Movement : MonoBehaviour
 
 		if (isRunning){
 			speed = 15;
-			ShakingCamera.Instance.ShakeCamera(3f);
 			_animator.SetBool(IsRunning, true);	
+            if(_animator.GetBool(IsWalking)){
+                ShakingCamera.Instance.ShakeCamera(3f);
+            }
 		} else {
 			speed = 10;
 			ShakingCamera.Instance.ShakeCamera(0f);
@@ -216,13 +217,6 @@ public class Movement : MonoBehaviour
 				_animator.SetBool(IsRunning, false);			
         		_animator.SetBool(IsWalking, false);
 			}
-		} 
-    }
-
-    public void JumpTouch()
-    {
-		if(IsGrounded()){
-			_rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 		} 
     }
 
